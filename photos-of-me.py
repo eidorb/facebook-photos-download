@@ -190,7 +190,7 @@ def get_media_details(driver: webdriver.Chrome, url: str) -> Media:
     Can be a photo or video.
     """
     driver.get(url)
-    if driver.find_elements_by_link_text("View full size"):
+    if driver.find_elements_by_link_text("View Full Size"):
         return Media(
             type="photo",
             actor=driver.find_element_by_css_selector("strong.actor").text,
@@ -199,7 +199,7 @@ def get_media_details(driver: webdriver.Chrome, url: str) -> Media:
             ).text,
             date=driver.find_element_by_css_selector("abbr").text,
             full_size_url=driver.find_element_by_link_text(
-                "View full size"
+                "View Full Size"
             ).get_attribute("href"),
             # We need cookies for authenticated requests ;)
             cookies=driver.get_cookies(),
@@ -303,7 +303,7 @@ def download_video(video: Media, directory: str) -> None:
 def get_photo_url(full_size_url: str, cookies: list) -> str:
     """Returns redirect URL from `full_size_url`.
 
-    The "View full size" URL redirects to the *real* image.
+    The "View Full Size" URL redirects to the *real* image.
     """
     session = requests.Session()
     for cookie in cookies:
